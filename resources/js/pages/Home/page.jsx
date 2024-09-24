@@ -8,7 +8,7 @@ const Projects = React.lazy(() => import("./projects"));
 const Resume = React.lazy(() => import("./resume"));
 const Contact = React.lazy(() => import("./contact"));
 const About = React.lazy(() => import("./about"));
-export default function Home() {
+export default function Home({ projects }) {
     const links = [
         {
             id: 1,
@@ -27,7 +27,7 @@ export default function Home() {
             id: 5,
             href: "/portfolio",
             name: "Portfolio",
-            component: <Projects />,
+            component: <Projects projects={projects} />,
         },
         {
             id: 3,

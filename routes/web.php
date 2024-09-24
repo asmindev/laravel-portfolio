@@ -1,8 +1,7 @@
 <?php
 
+use App\Http\Controllers\Home;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Home.page');
-});
+Route::get('/', Home::class);

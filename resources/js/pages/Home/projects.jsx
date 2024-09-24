@@ -9,39 +9,6 @@ import {
 } from "@/components/ui/dialog";
 import { Github01Icon, LinkSquare01Icon } from "hugeicons-react";
 
-const projects = [
-    {
-        id: 1,
-        name: "Travel Guide",
-        description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum voluptates ducimus necessitatibus eius laborum quos et blanditiis a dolores ab?",
-        stacks: ["React", "Tailwind", "Laravel"],
-        image: "https://cdn.dribbble.com/userupload/11092298/file/original-ae0db195e8e43ccf27ad4073632fd4af.png?resize=2048x1536",
-        repository: "https://github.com/asmindev/mockup",
-        live: "https://asmindev.github.io/mockup/",
-    },
-    {
-        id: 2,
-        name: "Mockup",
-        description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum voluptates ducimus necessitatibus eius laborum quos et blanditiis a dolores ab?",
-        stacks: ["React", "Tailwind"],
-        image: "https://cdn.dribbble.com/userupload/3788822/file/original-5ec7ae76222db444b669364a4ce483ec.png?resize=2048x1536",
-        repository: "https://github.com/asmindev/mockup",
-        live: "https://asmindev.github.io/mockup/",
-    },
-    {
-        id: 2,
-        name: "ZoyZoo",
-        description:
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum voluptates ducimus necessitatibus eius laborum quos et blanditiis a dolores ab?",
-        stacks: ["React", "Tailwind"],
-        image: "https://cdn.dribbble.com/userupload/9478042/file/original-862bf15c946b12bd1b93ee884bf22303.png?resize=2048x1536&vertical=center",
-        repository: "https://github.com/asmindev/mockup",
-        live: "https://asmindev.github.io/mockup/",
-    },
-];
-
 const Card = ({ project }) => {
     return (
         <Dialog>
@@ -50,7 +17,7 @@ const Card = ({ project }) => {
                     <img
                         loading={"lazy"}
                         className="w-full h-full object-cover group-hover:scale-105 transition-all duration-200"
-                        src={project.image}
+                        src={`/storage/${project.image}`}
                         alt={project.name}
                     />
                     <div className="absolute inset-0 w-full h-full bg-black/10 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-200">
@@ -66,7 +33,7 @@ const Card = ({ project }) => {
                 <DialogHeader className={"relative h-fit overflow-hidden"}>
                     <img
                         className="w-full h-32 object-cover"
-                        src={project.image}
+                        src={`/storage/${project.image}`}
                         alt={project.name}
                     />
                     <div className="absolute -top-1.5 left-0 w-full h-full bg-black/30">
@@ -90,7 +57,7 @@ const Card = ({ project }) => {
                                     {project.stacks.map((stack, index) => (
                                         <li
                                             key={index}
-                                            className="block px-2.5 py-[0.1px] rounded-xl bg-gradient-to-bl from-primary-400 to-primary-600"
+                                            className="block px-2.5 py-[0.1px] rounded-xl bg-gradient-to-bl from-primary-400 to-primary-600 capitalize"
                                         >
                                             {stack}
                                         </li>
@@ -116,11 +83,11 @@ const Card = ({ project }) => {
                                         </li>
                                     )}
 
-                                    {project.live && (
+                                    {project.homepage && (
                                         <li>
                                             <a
                                                 className="px-2.5 py-[0.1px] rounded-xl border border-base-700 flex items-center gap-x-1"
-                                                href={project.live}
+                                                href={project.homepage}
                                                 target="_blank"
                                                 rel="noreferrer"
                                             >
@@ -142,7 +109,7 @@ const Card = ({ project }) => {
     );
 };
 
-export default function Projects() {
+export default function Projects({ projects }) {
     return (
         <div className="w-full h-full">
             <div className="my-4">
