@@ -6,9 +6,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title inertia>{{ config('app.name', 'Laravel') }}</title>
+    <title inertia>{{ config('app.name', 'Asmin - Creative Developer') }}</title>
+    <meta name="description" content="Portfolio of Asmin, a Creative Developer specializing in building exceptional digital experiences.">
+    <meta name="keywords" content="Asmin, Creative Developer, Web Developer, Portfolio, Laravel, React, Inertia.js">
+    <meta name="author" content="Asmin">
 
-    <link rel="icon" href="/favicon.ico" sizes="any">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="Asmin - Creative Developer">
+    <meta property="og:description" content="Portfolio of Asmin, a Creative Developer specializing in building exceptional digital experiences.">
+    <meta property="og:image" content="{{ asset('og-image.jpg') }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="Asmin - Creative Developer">
+    <meta property="twitter:description" content="Portfolio of Asmin, a Creative Developer specializing in building exceptional digital experiences.">
+    <meta property="twitter:image" content="{{ asset('og-image.jpg') }}">
+
+
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 

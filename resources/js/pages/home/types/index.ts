@@ -9,6 +9,17 @@ export interface Profile {
     resume_url: string | null;
     location: string | null;
     phone: string | null;
+    email: string | null;
+}
+
+export interface User {
+    id: number;
+    name: string;
+    email: string;
+    avatar: string | null;
+    email_verified_at: string | null;
+    created_at: string;
+    updated_at: string;
 }
 
 export interface Skill {
@@ -75,10 +86,34 @@ export interface Testimonial {
     rating: number;
 }
 
-export interface User {
+export interface Tag {
     id: number;
     name: string;
-    email: string;
+    slug: string;
+    color: string | null;
+}
+
+export interface Technology {
+    id: number;
+    name: string;
+    slug: string;
+    icon: string | null;
+    category: string | null;
+}
+
+export interface Project {
+    id: number;
+    title: string;
+    slug: string;
+    description: string | null;
+    content: string | null;
+    thumbnail: string | null;
+    project_url: string | null;
+    github_url: string | null;
+    demo_url: string | null;
+    is_featured: boolean;
+    tags: Tag[];
+    technologies: Technology[];
 }
 
 export interface HomePageProps {
@@ -90,4 +125,5 @@ export interface HomePageProps {
     certificates: Certificate[];
     socialLinks: SocialLink[];
     testimonials: Testimonial[];
+    projects: Project[];
 }

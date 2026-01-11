@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('resume_url')->nullable();
             $table->string('location')->nullable();
             $table->string('phone')->nullable();
+            $table->string('email')->nullable();
             $table->timestamps();
         });
     }

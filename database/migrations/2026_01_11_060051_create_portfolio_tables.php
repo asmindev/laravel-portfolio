@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->text('detailed_description')->nullable();
+            $table->longText('content')->nullable();
             $table->string('thumbnail')->nullable();
             $table->string('project_url')->nullable();
             $table->string('github_url')->nullable();
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->integer('order')->default(0);
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_published')->default(true);
+            $table->timestamp('published_at')->nullable();
             $table->integer('views_count')->default(0);
             $table->timestamps();
         });

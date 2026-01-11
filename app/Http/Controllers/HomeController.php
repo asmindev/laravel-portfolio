@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use App\Models\User;
 use App\Models\Skill;
 use App\Models\Experience;
@@ -32,6 +33,7 @@ class HomeController extends Controller
         $certificates = Certificate::where('user_id', $user->id)->orderBy('issue_date', 'desc')->get();
         $socialLinks = SocialLink::where('user_id', $user->id)->orderBy('order')->get();
         $testimonials = Testimonial::where('user_id', $user->id)->published()->orderBy('order')->get();
+        $projects = Project::where('user_id', $user->id)->published()->orderBy('order')->with(['technologies', 'tags'])->get();
 
         return Inertia::render('home/page', [
             'user' => $user,
@@ -42,6 +44,7 @@ class HomeController extends Controller
             'certificates' => $certificates,
             'socialLinks' => $socialLinks,
             'testimonials' => $testimonials,
+            'projects' => $projects,
         ]);
     }
 }

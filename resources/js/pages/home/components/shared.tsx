@@ -1,3 +1,5 @@
+import { cn } from '@/lib/utils';
+
 // Animation variants
 export const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
@@ -54,8 +56,8 @@ export const MailIcon = () => (
     </svg>
 );
 
-export const ExternalLinkIcon = () => (
-    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+export const ExternalLinkIcon = ({ className }: { className?: string }) => (
+    <svg className={cn('h-4 w-4', className)} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
             strokeLinecap="round"
             strokeLinejoin="round"
