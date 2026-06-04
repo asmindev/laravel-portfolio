@@ -70,13 +70,11 @@ export function AboutSection({ profile }: AboutSectionProps) {
                         </motion.div>
 
                         <motion.div variants={fadeInUp} className="mt-10 flex flex-wrap gap-4">
-                            {profile.resume_url && (
-                                <Button size="lg" className="rounded-full px-8" asChild>
-                                    <a href={profile.resume_url} target="_blank" rel="noopener noreferrer">
-                                        Download CV
-                                    </a>
-                                </Button>
-                            )}
+                            <Button size="lg" className="rounded-full px-8" asChild>
+                                <a href={route('resume.download')}>
+                                    Download CV
+                                </a>
+                            </Button>
                             {profile.location && (
                                 <div className="flex items-center gap-3 rounded-full border border-border px-6 py-2 text-sm text-foreground">
                                     <span className="relative flex h-2 w-2">
