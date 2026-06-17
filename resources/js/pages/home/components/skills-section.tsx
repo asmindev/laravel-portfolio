@@ -68,33 +68,20 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
                                             {groupedSkills[category].length} item{groupedSkills[category].length > 1 ? 's' : ''}
                                         </span>
                                     </h3>
-                                    <div className={`grid gap-x-8 gap-y-4 ${
-                                        index === 0 ? 'sm:grid-cols-2' : 'grid-cols-1'
+                                    <div className={`grid gap-3 ${
+                                        index === 0 ? 'grid-cols-2 sm:grid-cols-3' : 'grid-cols-2'
                                     }`}>
                                         {groupedSkills[category].map((skill) => (
-                                            <div key={skill.id} className="space-y-1.5 group/skill">
-                                                <div className="flex items-center justify-between text-sm">
-                                                    <span className="font-medium text-foreground/80 group-hover/skill:text-primary transition-colors duration-300">
-                                                        {skill.name}
-                                                    </span>
-                                                    {skill.proficiency_level && (
-                                                        <span className="font-mono text-xs text-muted-foreground group-hover/skill:text-primary transition-colors duration-300">
-                                                            {skill.proficiency_level}%
-                                                        </span>
-                                                    )}
-                                                </div>
-                                                {skill.proficiency_level && (
-                                                    <div className="h-1.5 w-full overflow-hidden rounded-full bg-secondary">
-                                                        <motion.div
-                                                            initial={{ width: 0 }}
-                                                            whileInView={{ width: `${skill.proficiency_level}%` }}
-                                                            viewport={{ once: true }}
-                                                            transition={{ duration: 1, ease: 'easeOut' }}
-                                                            className="h-full rounded-full bg-linear-to-r from-primary/80 to-primary transition-all duration-300"
-                                                        />
-                                                    </div>
-                                                )}
-                                            </div>
+                                            <motion.div
+                                                key={skill.id}
+                                                whileHover={{ scale: 1.03 }}
+                                                className="relative flex items-center gap-3 rounded-2xl border border-border/50 bg-secondary/10 p-3.5 shadow-2xs transition-all duration-300 hover:border-primary/30 hover:bg-primary/5 hover:shadow-xs group/skill"
+                                            >
+                                                <span className="flex h-2 w-2 shrink-0 rounded-full bg-primary/40 group-hover/skill:bg-primary transition-colors duration-300" />
+                                                <span className="text-sm font-medium text-foreground/90 group-hover/skill:text-primary transition-colors duration-300">
+                                                    {skill.name}
+                                                </span>
+                                            </motion.div>
                                         ))}
                                     </div>
                                 </div>
