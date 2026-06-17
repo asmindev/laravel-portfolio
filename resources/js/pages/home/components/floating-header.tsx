@@ -11,6 +11,7 @@ const navItems = [
     { name: 'Proyek', id: 'projects' },
     { name: 'Pengalaman', id: 'experience' },
     { name: 'Pendidikan', id: 'education' },
+    { name: 'Sertifikat', id: 'certificates' },
 ];
 
 export function FloatingHeader() {
@@ -181,30 +182,41 @@ function MobileNav({ activeTab, scrollToSection }: { activeTab: string; scrollTo
                         </div>
                     </motion.div>
                 ) : (
-                    <motion.button
-                        key="collapsed"
-                        layoutId="mobile-nav"
-                        onClick={() => setIsOpen(true)}
-                        className="flex items-center gap-3 rounded-full border border-white/10 bg-black/60 px-6 py-3 shadow-xl backdrop-blur-xl supports-backdrop-filter:bg-black/30"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 20 }}
-                        whileTap={{ scale: 0.95 }}
-                        transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-                    >
-                        <motion.span
-                            key={activeItem.id}
-                            initial={{ filter: 'blur(10px)', opacity: 0, y: 5 }}
-                            animate={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
-                            exit={{ filter: 'blur(10px)', opacity: 0, y: -5 }}
-                            transition={{ duration: 0.3 }}
-                            className="text-sm font-medium text-white"
+                    <div className="flex items-center gap-2">
+                        <motion.button
+                            key="collapsed"
+                            layoutId="mobile-nav"
+                            onClick={() => setIsOpen(true)}
+                            className="flex items-center gap-3 rounded-full border border-white/10 bg-black/60 px-6 py-3 shadow-xl backdrop-blur-xl supports-backdrop-filter:bg-black/30"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 20 }}
+                            whileTap={{ scale: 0.95 }}
+                            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
                         >
-                            {activeItem.name}
-                        </motion.span>
-                        <div className="h-4 w-px bg-white/20" />
-                        <Menu size={20} className="text-white" />
-                    </motion.button>
+                            <motion.span
+                                key={activeItem.id}
+                                initial={{ filter: 'blur(10px)', opacity: 0, y: 5 }}
+                                animate={{ filter: 'blur(0px)', opacity: 1, y: 0 }}
+                                exit={{ filter: 'blur(10px)', opacity: 0, y: -5 }}
+                                transition={{ duration: 0.3 }}
+                                className="text-sm font-medium text-white"
+                            >
+                                {activeItem.name}
+                            </motion.span>
+                            <div className="h-4 w-px bg-white/20" />
+                            <Menu size={20} className="text-white" />
+                        </motion.button>
+
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+                            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                        >
+                            <ModeToggle className="h-[46px] w-[46px] border-white/10 bg-black/60 text-white hover:bg-white/10 shadow-xl backdrop-blur-xl" />
+                        </motion.div>
+                    </div>
                 )}
             </AnimatePresence>
         </div>

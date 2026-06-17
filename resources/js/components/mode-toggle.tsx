@@ -3,8 +3,9 @@ import { useTheme } from '@/hooks/use-theme';
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { flushSync } from 'react-dom';
+import { cn } from '@/lib/utils';
 
-export function ModeToggle() {
+export function ModeToggle({ className }: { className?: string }) {
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
@@ -73,7 +74,10 @@ export function ModeToggle() {
             variant="ghost"
             size="icon"
             onClick={toggleTheme}
-            className="group relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-border bg-background/50 hover:bg-accent"
+            className={cn(
+                "group relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-border bg-background/50 hover:bg-accent",
+                className
+            )}
             aria-label="Toggle theme"
         >
             <AnimatePresence mode="wait" initial={false}>
