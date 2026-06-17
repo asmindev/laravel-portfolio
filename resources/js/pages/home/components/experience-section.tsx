@@ -3,6 +3,37 @@ import { motion } from 'motion/react';
 import { Experience } from '../types';
 import { fadeInUp, formatDate, MapPinIcon, staggerContainer } from './shared';
 
+const renderDescription = (desc: string) => {
+    const lines = desc.split('\n').map(l => l.trim()).filter(Boolean);
+    const introLines: string[] = [];
+    const listItems: string[] = [];
+
+    lines.forEach(line => {
+        if (line.startsWith('•') || line.startsWith('-')) {
+            listItems.push(line.replace(/^[•-]\s*/, ''));
+        } else {
+            introLines.push(line);
+        }
+    });
+
+    return (
+        <div className="pt-2 space-y-3 text-sm leading-relaxed text-muted-foreground">
+            {introLines.map((line, i) => (
+                <p key={`intro-${i}`}>{line}</p>
+            ))}
+            {listItems.length > 0 && (
+                <ul className="list-disc pl-5 space-y-1.5 mt-2">
+                    {listItems.map((item, i) => (
+                        <li key={`item-${i}`} className="text-muted-foreground/90">
+                            {item}
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    );
+};
+
 interface ExperienceSectionProps {
     experiences: Experience[];
 }
@@ -84,9 +115,7 @@ export function ExperienceSection({ experiences }: ExperienceSectionProps) {
                                                     </div>
                                                 )}
 
-                                                {exp.description && (
-                                                    <p className="pt-2 text-sm leading-relaxed text-muted-foreground">{exp.description}</p>
-                                                )}
+                                                {exp.description && renderDescription(exp.description)}
                                             </div>
                                         </div>
                                     </div>
