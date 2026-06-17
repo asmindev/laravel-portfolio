@@ -1,4 +1,4 @@
-import { GalleryVerticalEnd, LayoutDashboard, Settings, Briefcase, BookOpen, LogOut, ChevronsUpDown } from 'lucide-react';
+import { GalleryVerticalEnd, LayoutDashboard, Settings, Briefcase, BookOpen, LogOut, ChevronsUpDown, Award } from 'lucide-react';
 import * as React from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import { PageProps } from '@/types';
@@ -63,6 +63,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             url: route('blog.index'),
             icon: BookOpen,
             isActive: route().current('blog.*'),
+        },
+        {
+            title: 'Certificates',
+            url: route('certificates.index'),
+            icon: Award,
+            isActive: route().current('certificates.*'),
         },
         {
             title: 'Profile',

@@ -50,6 +50,17 @@ export default function AdminLayout({ children, header }: AdminLayoutProps) {
         } else if (route().current('blog.edit')) {
             breadcrumbTitle = 'Edit Artikel';
         }
+    } else if (route().current('certificates.*')) {
+        breadcrumbParent = 'Certificates';
+        parentUrl = route('certificates.index');
+        
+        if (route().current('certificates.index')) {
+            breadcrumbTitle = 'Daftar Sertifikat';
+        } else if (route().current('certificates.create')) {
+            breadcrumbTitle = 'Tambah Sertifikat';
+        } else if (route().current('certificates.edit')) {
+            breadcrumbTitle = 'Edit Sertifikat';
+        }
     } else if (route().current('profile.edit')) {
         breadcrumbTitle = 'Profil';
     }
