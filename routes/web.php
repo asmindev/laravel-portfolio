@@ -15,7 +15,20 @@ Route::get('/resume/download', [ResumeController::class, 'download'])->name('res
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('admin/dashboard/page');
+        $todayAnalytics = \App\Models\Analytics::whereDate('date', today())->first();
+        $thisMonthAnalytics = \App\Models\Analytics::whereMonth('date', now()->month)
+            ->whereYear('date', now()->year)
+            ->get();
+
+        return Inertia::render('admin/dashboard/page', [
+            'projectsCount' => \App\Models\Project::count(),
+            'postsCount' => \App\Models\BlogPost::count(),
+            'messagesCount' => \App\Models\ContactMessage::count(),
+            'visitorStats' => [
+                'today' => $todayAnalytics ? $todayAnalytics->unique_visitors : 0,
+                'this_month' => $thisMonthAnalytics->sum('unique_visitors'),
+            ]
+        ]);
     })->name('dashboard');
 
     Route::resource('projects', ProjectController::class);

@@ -26,8 +26,8 @@ class ProfileUpdateRequest extends FormRequest
             'title' => 'nullable|string|max:255',
             'tagline' => 'nullable|string|max:255',
             'bio' => 'nullable|string',
-            'profile_image' => 'nullable|string',
-            'resume_url' => 'nullable|url',
+            'profile_image' => 'nullable',
+            'resume_url' => 'nullable',
             'location' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:50',
         ];

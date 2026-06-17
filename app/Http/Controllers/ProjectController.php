@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProjectStoreRequest;
 use App\Http\Requests\ProjectUpdateRequest;
 use App\Models\Project;
+use App\Models\Tag;
+use App\Models\Technology;
 use App\Services\ProjectService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -21,14 +23,17 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::with(['tags', 'technologies', 'images'])->paginate(10);
-        return Inertia::render('Projects/Index', [
+        return Inertia::render('projects/index', [
             'projects' => $projects,
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('Projects/Create');
+        return Inertia::render('projects/create', [
+            'tags' => Tag::all(),
+            'technologies' => Technology::all(),
+        ]);
     }
 
     public function store(ProjectStoreRequest $request)
@@ -41,8 +46,10 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $project->load(['tags', 'technologies', 'images']);
-        return Inertia::render('Projects/Edit', [
+        return Inertia::render('projects/edit', [
             'project' => $project,
+            'tags' => Tag::all(),
+            'technologies' => Technology::all(),
         ]);
     }
 

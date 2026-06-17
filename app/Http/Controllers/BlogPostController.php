@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BlogPostStoreRequest;
 use App\Http\Requests\BlogPostUpdateRequest;
 use App\Models\BlogPost;
+use App\Models\Category;
 use App\Services\BlogService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -21,14 +22,16 @@ class BlogPostController extends Controller
     public function index()
     {
         $posts = BlogPost::with(['categories', 'user'])->latest()->paginate(10);
-        return Inertia::render('Blog/Index', [
+        return Inertia::render('blog/index', [
             'posts' => $posts,
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('Blog/Create');
+        return Inertia::render('blog/create', [
+            'categories' => Category::all(),
+        ]);
     }
 
     public function store(BlogPostStoreRequest $request)
@@ -41,8 +44,9 @@ class BlogPostController extends Controller
     public function edit(BlogPost $blogPost)
     {
         $blogPost->load(['categories']);
-        return Inertia::render('Blog/Edit', [
+        return Inertia::render('blog/edit', [
             'post' => $blogPost,
+            'categories' => Category::all(),
         ]);
     }
 

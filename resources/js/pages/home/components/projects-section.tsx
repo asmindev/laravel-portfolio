@@ -43,14 +43,15 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
 
                 <div className="flex flex-col items-center gap-10 sm:gap-20">
                     {projects.map((project, i) => {
-                        const targetScale = 1 - (projects.length - i) * 0.05;
+                        const step = 1 / projects.length;
+                        const targetScale = 1 - Math.min((projects.length - i) * 0.03, 0.2);
                         return (
                             <ProjectCard
                                 key={project.id}
                                 i={i}
                                 project={project}
                                 progress={scrollYProgress}
-                                range={[i * 0.25, 1]}
+                                range={[i * step, 1]}
                                 targetScale={targetScale}
                                 total={projects.length}
                             />
@@ -71,7 +72,7 @@ interface ProjectCardProps {
     total: number;
 }
 
-function ProjectCard({ i, project, progress, range, targetScale }: ProjectCardProps) {
+function ProjectCard({ i, project, progress, range, targetScale, total }: ProjectCardProps) {
     const containerRef = useRef(null);
 
     const scale = useTransform(progress, range, [1, targetScale]);
@@ -79,7 +80,8 @@ function ProjectCard({ i, project, progress, range, targetScale }: ProjectCardPr
     // Calculate a dynamic top offset to create the stacking effect
     // As we scroll down, cards stick to the top.
     // We add a little overlap (e.g. 20px or 40px) so they don't fully cover each other until the very end
-    const topOffset = 100 + i * 30;
+    const offsetStep = Math.min(25, 150 / total);
+    const topOffset = 100 + i * offsetStep;
 
     return (
         <div

@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { useTheme } from '@/hooks/use-theme';
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useState } from 'react';
+import { flushSync } from 'react-dom';
 
 export function ModeToggle() {
     const { theme, setTheme } = useTheme();
@@ -17,8 +18,54 @@ export function ModeToggle() {
 
     const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
 
-    const toggleTheme = () => {
-        setTheme(isDark ? 'light' : 'dark');
+    const toggleTheme = (event: React.MouseEvent<HTMLButtonElement>) => {
+        const doc = document as any;
+        console.log('toggleTheme called! event.clientX:', event.clientX, 'event.clientY:', event.clientY);
+        if (!doc.startViewTransition) {
+            console.log('startViewTransition is NOT supported');
+            setTheme(isDark ? 'light' : 'dark');
+            return;
+        }
+
+        const x = event.clientX + window.scrollX;
+        const y = event.clientY + window.scrollY;
+        const endRadius = Math.hypot(
+            Math.max(x, document.documentElement.scrollWidth - x),
+            Math.max(y, document.documentElement.scrollHeight - y)
+        );
+        console.log('Calculated coordinates - x:', x, 'y:', y, 'endRadius:', endRadius);
+
+        const nextTheme = isDark ? 'light' : 'dark';
+
+        const transition = doc.startViewTransition(() => {
+            flushSync(() => {
+                // Synchronously update the DOM class so the view transition snapshot captures it!
+                const root = window.document.documentElement;
+                root.classList.remove('light', 'dark');
+                root.classList.add(nextTheme);
+                localStorage.setItem('appearance', nextTheme);
+
+                // Update React state so React is in sync
+                setTheme(nextTheme);
+            });
+        });
+
+        transition.ready.then(() => {
+            document.documentElement.animate(
+                {
+                    clipPath: [
+                        `circle(0px at ${x}px ${y}px)`,
+                        `circle(${endRadius}px at ${x}px ${y}px)`
+                    ]
+                },
+                {
+                    duration: 450,
+                    easing: 'ease-in-out',
+                    pseudoElement: '::view-transition-new(root)',
+                    fill: 'both',
+                }
+            );
+        });
     };
 
     return (

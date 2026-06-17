@@ -12,15 +12,15 @@ export function useTheme() {
 
     useEffect(() => {
         const root = window.document.documentElement;
-        root.classList.remove('light', 'dark');
+        const targetTheme = theme === 'system'
+            ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+            : theme;
 
-        if (theme === 'system') {
-            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            root.classList.add(systemTheme);
-            return;
+        if (!root.classList.contains(targetTheme)) {
+            root.classList.remove('light', 'dark');
+            root.classList.add(targetTheme);
         }
 
-        root.classList.add(theme);
         localStorage.setItem('appearance', theme);
     }, [theme]);
 

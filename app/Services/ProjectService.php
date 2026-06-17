@@ -12,6 +12,9 @@ class ProjectService
     {
         return DB::transaction(function () use ($data) {
             $data['slug'] = Str::slug($data['title']);
+            if (!isset($data['user_id'])) {
+                $data['user_id'] = auth()->id();
+            }
             $project = Project::create($data);
 
             if (isset($data['tags'])) {

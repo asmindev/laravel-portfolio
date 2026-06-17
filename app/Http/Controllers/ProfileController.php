@@ -21,7 +21,7 @@ class ProfileController extends Controller
         $user = auth()->user();
         $user->load('profile');
 
-        return Inertia::render('Profile/Edit', [
+        return Inertia::render('profile/edit', [
             'profile' => $user->profile,
             'user' => $user
         ]);
