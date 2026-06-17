@@ -2,7 +2,6 @@ import { Separator } from '@/components/ui/separator';
 import { Head } from '@inertiajs/react';
 import {
     AboutSection,
-    CertificatesSection,
     EducationSection,
     ExperienceSection,
     FloatingHeader,
@@ -62,9 +61,6 @@ export default function HomePage({
                     <EducationSection educations={educations} />
                 </section>
                 {educations.length > 0 && <Separator />}
-
-                <CertificatesSection certificates={certificates} />
-                {certificates.length > 0 && <Separator />}
 
                 <TestimonialsSection testimonials={testimonials} />
 

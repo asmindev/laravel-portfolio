@@ -54,23 +54,47 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
                             <motion.div
                                 key={category}
                                 variants={fadeInUp}
-                                className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-sm transition-all duration-500 hover:border-primary/50 hover:shadow-md ${
+                                className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-sm transition-all duration-500 hover:border-primary/30 hover:shadow-md ${
                                     index === 0 ? 'lg:col-span-2' : ''
                                 }`}
                             >
                                 {/* Subtle Gradient Mesh Background - Adaptive opacity */}
                                 <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-primary/10 blur-[80px] transition-all duration-500 group-hover:bg-primary/20 dark:bg-primary/20 dark:group-hover:bg-primary/30" />
 
-                                <div className="relative z-10">
-                                    <h3 className="mb-6 font-heading text-2xl font-bold tracking-tight text-card-foreground">{category}</h3>
-                                    <div className="flex flex-wrap gap-2">
+                                <div className="relative z-10 w-full">
+                                    <h3 className="mb-6 font-heading text-2xl font-bold tracking-tight text-card-foreground flex items-center justify-between">
+                                        <span>{category}</span>
+                                        <span className="text-xs font-mono font-normal text-muted-foreground opacity-60">
+                                            {groupedSkills[category].length} item{groupedSkills[category].length > 1 ? 's' : ''}
+                                        </span>
+                                    </h3>
+                                    <div className={`grid gap-x-8 gap-y-4 ${
+                                        index === 0 ? 'sm:grid-cols-2' : 'grid-cols-1'
+                                    }`}>
                                         {groupedSkills[category].map((skill) => (
-                                            <span
-                                                key={skill.id}
-                                                className="inline-flex items-center rounded-lg border border-border bg-secondary/50 px-3 py-1.5 text-sm font-medium text-secondary-foreground transition-all duration-300 hover:border-primary/50 hover:bg-primary/10 hover:text-primary"
-                                            >
-                                                {skill.name}
-                                            </span>
+                                            <div key={skill.id} className="space-y-1.5 group/skill">
+                                                <div className="flex items-center justify-between text-sm">
+                                                    <span className="font-medium text-foreground/80 group-hover/skill:text-primary transition-colors duration-300">
+                                                        {skill.name}
+                                                    </span>
+                                                    {skill.proficiency_level && (
+                                                        <span className="font-mono text-xs text-muted-foreground group-hover/skill:text-primary transition-colors duration-300">
+                                                            {skill.proficiency_level}%
+                                                        </span>
+                                                    )}
+                                                </div>
+                                                {skill.proficiency_level && (
+                                                    <div className="h-1.5 w-full overflow-hidden rounded-full bg-secondary">
+                                                        <motion.div
+                                                            initial={{ width: 0 }}
+                                                            whileInView={{ width: `${skill.proficiency_level}%` }}
+                                                            viewport={{ once: true }}
+                                                            transition={{ duration: 1, ease: 'easeOut' }}
+                                                            className="h-full rounded-full bg-linear-to-r from-primary/80 to-primary transition-all duration-300"
+                                                        />
+                                                    </div>
+                                                )}
+                                            </div>
                                         ))}
                                     </div>
                                 </div>
