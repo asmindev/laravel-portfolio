@@ -97,12 +97,18 @@ export function ExperienceSection({ experiences }: ExperienceSectionProps) {
 
                                 {/* Content Card */}
                                 <div className="ml-12 flex-1 md:ml-0 md:pl-12">
-                                    <div className="group/card relative overflow-hidden rounded-2xl border border-border/80 bg-card/45 backdrop-blur-md p-6 shadow-sm transition-all duration-500 hover:border-primary/40 hover:shadow-xl dark:bg-zinc-900/40">
+                                    <div className="group/card relative overflow-hidden rounded-r-2xl bg-card/10 dark:bg-zinc-900/10 p-6 pl-6 transition-all duration-500 hover:bg-card/25 dark:hover:bg-zinc-900/20 hover:pl-8">
+                                        {/* Left base line */}
+                                        <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-border/50 transition-colors duration-500 group-hover/card:bg-primary/20" />
+                                        
+                                        {/* Left active line (grows from center) */}
+                                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] bg-primary h-0 transition-all duration-500 ease-out group-hover/card:h-full" />
+
                                         {/* Glow overlay */}
                                         <div className="absolute -inset-px bg-gradient-to-r from-primary/5 to-transparent opacity-0 transition-opacity duration-500 group-hover/card:opacity-100 pointer-events-none" />
                                         
                                         {/* Watermark Briefcase in background */}
-                                        <div className="absolute -right-6 -bottom-6 h-28 w-28 text-foreground/5 dark:text-white/5 opacity-5 transition-all duration-700 ease-out group-hover/card:scale-125 group-hover/card:rotate-12 group-hover/card:opacity-10 pointer-events-none">
+                                        <div className="absolute -right-6 -bottom-6 h-28 w-28 text-foreground/5 dark:text-white/5 opacity-3 transition-all duration-750 ease-out group-hover/card:scale-125 group-hover/card:rotate-12 group-hover/card:opacity-8 pointer-events-none">
                                             <Briefcase className="h-full w-full" strokeWidth={1} />
                                         </div>
 
