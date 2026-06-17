@@ -27,13 +27,13 @@ export function ModeToggle() {
             return;
         }
 
-        const x = event.clientX + window.scrollX;
-        const y = event.clientY + window.scrollY;
+        const x = event.clientX || window.innerWidth / 2;
+        const y = event.clientY || window.innerHeight / 2;
         const endRadius = Math.hypot(
-            Math.max(x, document.documentElement.scrollWidth - x),
-            Math.max(y, document.documentElement.scrollHeight - y)
+            Math.max(x, window.innerWidth - x),
+            Math.max(y, window.innerHeight - y)
         );
-        console.log('Calculated coordinates - x:', x, 'y:', y, 'endRadius:', endRadius);
+        console.log('Calculated viewport coordinates - x:', x, 'y:', y, 'endRadius:', endRadius);
 
         const nextTheme = isDark ? 'light' : 'dark';
 
@@ -59,8 +59,8 @@ export function ModeToggle() {
                     ]
                 },
                 {
-                    duration: 450,
-                    easing: 'ease-in-out',
+                    duration: 500,
+                    easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
                     pseudoElement: '::view-transition-new(root)',
                     fill: 'both',
                 }
