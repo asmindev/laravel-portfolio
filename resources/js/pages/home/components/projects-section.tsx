@@ -44,7 +44,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                 <div className="flex flex-col items-center gap-10 sm:gap-20">
                     {projects.map((project, i) => {
                         const step = 1 / projects.length;
-                        const targetScale = 1 - Math.min((projects.length - i) * 0.03, 0.2);
+                        const targetScale = 1 - (projects.length - 1 - i) * 0.02;
                         return (
                             <ProjectCard
                                 key={project.id}
