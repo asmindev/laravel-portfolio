@@ -97,24 +97,32 @@ export function ExperienceSection({ experiences }: ExperienceSectionProps) {
 
                                 {/* Content Card */}
                                 <div className="ml-12 flex-1 md:ml-0 md:pl-12">
-                                    <div className="group/card relative rounded-2xl p-5 transition-all duration-300 hover:bg-secondary/35 dark:hover:bg-zinc-900/30">
-                                        <div className="relative z-10 flex gap-4 items-start">
+                                    <div className="group/card relative overflow-hidden rounded-2xl border border-border/80 bg-card/45 backdrop-blur-md p-6 shadow-sm transition-all duration-500 hover:border-primary/40 hover:shadow-xl dark:bg-zinc-900/40">
+                                        {/* Glow overlay */}
+                                        <div className="absolute -inset-px bg-gradient-to-r from-primary/5 to-transparent opacity-0 transition-opacity duration-500 group-hover/card:opacity-100 pointer-events-none" />
+                                        
+                                        {/* Watermark Briefcase in background */}
+                                        <div className="absolute -right-6 -bottom-6 h-28 w-28 text-foreground/5 dark:text-white/5 opacity-5 transition-all duration-700 ease-out group-hover/card:scale-125 group-hover/card:rotate-12 group-hover/card:opacity-10 pointer-events-none">
+                                            <Briefcase className="h-full w-full" strokeWidth={1} />
+                                        </div>
+
+                                        <div className="relative z-10 flex flex-col gap-4 sm:flex-row sm:items-start">
                                             {/* Company Logo / Fallback */}
                                             <div className="flex-shrink-0">
                                                 {exp.company_logo ? (
-                                                    <div className="h-10 w-10 overflow-hidden rounded-lg border border-border bg-card p-1 shadow-xs transition-transform duration-500 group-hover/card:scale-105">
+                                                    <div className="h-12 w-12 overflow-hidden rounded-xl border border-border bg-card p-1 shadow-xs transition-transform duration-500 group-hover/card:scale-105">
                                                         <img src={exp.company_logo} alt={exp.company_name} className="h-full w-full object-contain" />
                                                     </div>
                                                 ) : (
-                                                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-linear-to-br from-primary/10 to-secondary/10 border border-primary/20 text-primary shadow-xs transition-transform duration-500 group-hover/card:scale-105">
-                                                        <Building2 className="h-5 w-5" />
+                                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-primary/10 to-secondary/10 border border-primary/20 text-primary shadow-xs transition-transform duration-500 group-hover/card:scale-105">
+                                                        <Building2 className="h-6 w-6" />
                                                     </div>
                                                 )}
                                             </div>
 
                                             {/* Info */}
                                             <div className="flex-1 space-y-3">
-                                                <div className="flex flex-col justify-between gap-1 sm:flex-row sm:items-start sm:gap-4">
+                                                <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-start sm:gap-4">
                                                     <div>
                                                         <h3 className="font-heading text-lg font-bold text-foreground transition-colors duration-300 group-hover/card:text-primary sm:text-xl">
                                                             {exp.position}
