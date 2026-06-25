@@ -19,6 +19,7 @@ use App\Models\Testimonial;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
 class PortfolioSeeder extends Seeder
 {
@@ -45,8 +46,10 @@ class PortfolioSeeder extends Seeder
             return Tag::firstOrCreate(['name' => $name, 'slug' => str()->slug($name)]);
         });
 
+        Schema::disableForeignKeyConstraints();
         Category::truncate();
         $categories = Category::factory()->count(5)->create();
+        Schema::enableForeignKeyConstraints();
 
         // 2. Define main user account
         $user = User::firstOrCreate(
