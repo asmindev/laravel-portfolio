@@ -2,9 +2,11 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { MotionValue, motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
+import { Link } from '@inertiajs/react';
 import { Project } from '../types';
 import { ExternalLinkIcon } from './shared';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { ArrowUpRight } from 'lucide-react';
 
 interface ProjectsSectionProps {
     projects: Project[];
@@ -40,6 +42,19 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                     >
                         Kumpulan aplikasi dan sistem yang telah saya bangun.
                     </motion.p>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                    >
+                        <Button variant="outline" size="sm" asChild className="rounded-full">
+                            <Link href={route('portfolio.index')}>
+                                Lihat Semua Proyek
+                                <ExternalLinkIcon className="ml-2 h-3.5 w-3.5" />
+                            </Link>
+                        </Button>
+                    </motion.div>
                 </div>
 
                 <div className="flex flex-col items-center gap-10 sm:gap-20">
