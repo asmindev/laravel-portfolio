@@ -63,7 +63,7 @@ export function HeroSection({ profile, socialLinks }: HeroSectionProps) {
                     <div className="mt-12 flex flex-col items-end justify-between gap-8 lg:flex-row">
                         <motion.p variants={fadeInUp} className="max-w-md text-xl leading-relaxed font-light text-muted-foreground">
                             {profile?.bio?.slice(0, 150) ||
-                                'Startups and established brands love working with me. I create digital products that are outstanding.'}
+                                'Saya Asmin — software engineer di Kendari. Odoo ERP & web fullstack.'}
                             ...
                         </motion.p>
 

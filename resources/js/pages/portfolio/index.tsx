@@ -1,12 +1,9 @@
-import { Badge } from '@/components/ui/badge';
 import { FloatingHeader } from '@/pages/home/components/floating-header';
 import { Footer } from '@/pages/home/components/footer';
 import { Head, Link } from '@inertiajs/react';
-import { MotionValue, motion, useScroll, useTransform } from 'motion/react';
-import { useRef } from 'react';
-import { ArrowLeft, ArrowUpRight, Layers } from 'lucide-react';
-import { useIsMobile } from '@/hooks/use-mobile';
-import { Button } from '@/components/ui/button';
+import { motion, AnimatePresence } from 'motion/react';
+import { useState, useMemo } from 'react';
+import { ArrowLeft, ArrowUpRight, ExternalLink, Github } from 'lucide-react';
 
 interface Tag {
     id: number;
@@ -43,227 +40,250 @@ interface Props {
     projects: Project[];
 }
 
-interface ProjectCardProps {
-    i: number;
-    project: Project;
-    progress: MotionValue<number>;
-    range: [number, number];
-    targetScale: number;
-    total: number;
-}
+type FilterCategory = 'all' | 'erp' | 'web';
 
-function ProjectCard({ i, project, progress, range, targetScale, total }: ProjectCardProps) {
-    const isMobile = useIsMobile();
-    const containerRef = useRef(null);
+export default function PortfolioIndex({ projects = [] }: Props) {
+    const [activeFilter, setActiveFilter] = useState<FilterCategory>('all');
 
-    const scale = useTransform(progress, range, [1, targetScale]);
+    // Categorize projects based on technologies / keywords
+    const filteredProjects = useMemo(() => {
+        if (activeFilter === 'all') return projects;
+        if (activeFilter === 'erp') {
+            return projects.filter((p) => {
+                const names = (p.technologies || []).map((t) => t.name.toLowerCase());
+                const title = (p.title || '').toLowerCase();
+                const desc = (p.description || '').toLowerCase();
+                return (
+                    names.includes('odoo') ||
+                    names.includes('python') ||
+                    title.includes('erp') ||
+                    desc.includes('erp') ||
+                    desc.includes('odoo')
+                );
+            });
+        }
+        if (activeFilter === 'web') {
+            return projects.filter((p) => {
+                const names = (p.technologies || []).map((t) => t.name.toLowerCase());
+                return (
+                    names.includes('laravel') ||
+                    names.includes('react') ||
+                    names.includes('flutter') ||
+                    names.includes('inertia.js')
+                );
+            });
+        }
+        return projects;
+    }, [projects, activeFilter]);
 
-    const offsetStep = Math.min(25, 150 / total);
-    const topOffset = isMobile ? (20 + i * 15) : (100 + i * offsetStep);
+    const erpCount = useMemo(() => {
+        return projects.filter((p) => {
+            const names = (p.technologies || []).map((t) => t.name.toLowerCase());
+            const title = (p.title || '').toLowerCase();
+            const desc = (p.description || '').toLowerCase();
+            return (
+                names.includes('odoo') ||
+                names.includes('python') ||
+                title.includes('erp') ||
+                desc.includes('erp') ||
+                desc.includes('odoo')
+            );
+        }).length;
+    }, [projects]);
 
-    const formattedIndex = (i + 1).toString().padStart(2, '0');
-
-    return (
-        <div
-            ref={containerRef}
-            className="sticky flex h-screen items-start justify-center pt-4 md:pt-10"
-            style={{ top: 0 }}
-        >
-            <motion.div
-                style={{
-                    scale,
-                    top: topOffset,
-                }}
-                className="relative h-[68vh] md:h-[70vh] w-full max-w-5xl origin-top overflow-hidden rounded-3xl md:rounded-4xl border border-border/50 bg-card/75 backdrop-blur-md shadow-xl transition-all duration-500 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 dark:bg-card/40"
-            >
-                <div className="flex flex-col md:grid md:grid-cols-2 h-full">
-                    {/* Content Section */}
-                    <div className="relative flex flex-col justify-between p-5 md:p-12 flex-1 min-h-0 overflow-y-auto md:overflow-visible">
-                        {/* Large Index Number background */}
-                        <div className="absolute top-4 right-6 font-mono text-5xl md:text-8xl font-bold tracking-tighter text-foreground/5 select-none">
-                            {formattedIndex}
-                        </div>
-
-                        <div className="space-y-4 md:space-y-6 relative z-10">
-                            <div className="space-y-2">
-                                <h3 className="font-heading text-xl md:text-4xl font-bold text-card-foreground pr-12 leading-tight">
-                                    {project.title}
-                                </h3>
-                                <div className="flex flex-wrap gap-1.5">
-                                    {project.tags.slice(0, 3).map((tag) => (
-                                        <Badge
-                                            key={tag.id}
-                                            variant="secondary"
-                                            className="bg-primary/5 text-primary border border-primary/10 text-[9px] md:text-[10px] tracking-wider uppercase px-2 py-0.5 rounded-md hover:bg-primary/10 transition-colors"
-                                        >
-                                            {tag.name}
-                                        </Badge>
-                                    ))}
-                                </div>
-                            </div>
-                            <p className="text-sm md:text-lg leading-relaxed text-muted-foreground font-normal line-clamp-3 md:line-clamp-none">
-                                {project.description}
-                            </p>
-
-                            <div className="flex flex-wrap gap-1.5 pt-1">
-                                {project.technologies.slice(0, 4).map((tech) => (
-                                    <span 
-                                        key={tech.id} 
-                                        className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] md:text-xs font-semibold bg-secondary/85 text-secondary-foreground border border-border/30 hover:bg-secondary transition-colors"
-                                    >
-                                        <span className="h-1 w-1 rounded-full bg-primary" />
-                                        {tech.name}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="mt-4 md:mt-8 relative z-10">
-                            <Button
-                                size={isMobile ? "sm" : "lg"}
-                                className="rounded-full bg-foreground text-background transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:shadow-primary/20"
-                                asChild
-                            >
-                                <Link href={route('portfolio.show', project.slug)} className="flex items-center gap-2">
-                                    Detail Proyek <ArrowUpRight className="h-4 w-4" />
-                                </Link>
-                            </Button>
-                        </div>
-                    </div>
-
-                    {/* Image Section */}
-                    <div className="relative h-40 md:h-full w-full shrink-0 overflow-hidden bg-muted border-t md:border-t-0 md:border-l border-border/50">
-                        <div className="absolute inset-0 z-10 bg-linear-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
-                        <Link href={route('portfolio.show', project.slug)} className="block h-full w-full">
-                            {project.thumbnail ? (
-                                <motion.div className="h-full w-full" whileHover={{ scale: 1.05 }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>
-                                    <img src={project.thumbnail} alt={project.title} className="h-full w-full object-cover" />
-                                </motion.div>
-                            ) : (
-                                <div className="flex h-full w-full items-center justify-center bg-secondary/30">
-                                    <span className="text-4xl animate-pulse">✨</span>
-                                </div>
-                            )}
-                        </Link>
-                    </div>
-                </div>
-            </motion.div>
-        </div>
-    );
-}
-
-export default function PortfolioIndex({ projects }: Props) {
-    const totalTechs = new Set(projects.flatMap((p) => p.technologies.map((t) => t.name))).size;
-    
-    const containerRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ['start start', 'end end'],
-    });
+    const webCount = useMemo(() => {
+        return projects.filter((p) => {
+            const names = (p.technologies || []).map((t) => t.name.toLowerCase());
+            return (
+                names.includes('laravel') ||
+                names.includes('react') ||
+                names.includes('flutter') ||
+                names.includes('inertia.js')
+            );
+        }).length;
+    }, [projects]);
 
     return (
         <>
-            <Head title="Portofolio" />
+            <Head title="Arsip Portofolio — Asmin" />
 
-            <div className="min-h-screen bg-background">
+            <div className="min-h-screen bg-background text-foreground antialiased selection:bg-olive selection:text-white dark:selection:bg-olive-light dark:selection:text-black">
                 <FloatingHeader />
 
-                {/* Hero */}
-                <section className="relative pt-32 pb-12">
-                    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[600px] w-[800px] rounded-full bg-primary/5 blur-[150px]" />
-                        <div className="absolute top-40 right-0 h-[400px] w-[400px] rounded-full bg-purple-500/5 blur-[120px]" />
-                        <div className="absolute top-60 left-0 h-[300px] w-[300px] rounded-full bg-emerald-500/5 blur-[100px]" />
-                    </div>
-
-                    <div className="relative container mx-auto max-w-6xl px-4">
-                        <motion.div
-                            initial="hidden"
-                            animate="visible"
-                            className="space-y-6"
+                {/* Hero / Header Section */}
+                <section className="pt-32 sm:pt-40 pb-12 sm:pb-16 border-b border-border">
+                    <div className="max-w-6xl mx-auto px-5 sm:px-8">
+                        <Link
+                            href="/"
+                            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors mb-8 group"
                         >
-                            <Link
-                                href="/"
-                                className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                            <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
+                            <span>Kembali ke Beranda</span>
+                        </Link>
+
+                        <div className="max-w-4xl">
+                            <span className="text-xs font-mono text-muted-foreground uppercase tracking-widest block mb-2">
+                                Arsip Lengkap
+                            </span>
+                            <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-normal text-foreground leading-[1.05]">
+                                Seluruh Proyek &amp; Sistem
+                            </h1>
+                            <p className="mt-6 font-sans text-base sm:text-lg text-muted-foreground font-light max-w-2xl leading-relaxed">
+                                Dokumentasi komprehensif implementasi modul ERP enterprise,
+                                arsitektur basis data, dan aplikasi web modern yang dibangun
+                                untuk menyelesaikan tantangan operasional bisnis.
+                            </p>
+                        </div>
+
+                        {/* Category Filter Tabs */}
+                        <div className="mt-12 flex flex-wrap items-center gap-2 sm:gap-3 text-xs font-mono">
+                            <button
+                                onClick={() => setActiveFilter('all')}
+                                className={`px-4 py-2 rounded-full border transition-all ${
+                                    activeFilter === 'all'
+                                        ? 'bg-foreground text-background border-foreground font-medium'
+                                        : 'border-border/70 text-muted-foreground hover:text-foreground hover:border-foreground/40'
+                                }`}
                             >
-                                <ArrowLeft className="h-4 w-4" />
-                                Kembali ke Beranda
-                            </Link>
-
-                            <div className="space-y-4">
-                                <motion.div
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 0.1 }}
-                                    className="flex items-center gap-3"
-                                >
-                                    <div className="h-px w-12 bg-gradient-to-r from-primary to-transparent" />
-                                    <span className="font-mono text-xs font-bold tracking-[0.3em] text-primary uppercase">
-                                        Portofolio
-                                    </span>
-                                </motion.div>
-
-                                <h1 className="font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-                                    Karya Saya
-                                </h1>
-                                <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
-                                    Kumpulan proyek yang telah saya bangun — mulai dari implementasi ERP
-                                    untuk klien industri hingga aplikasi web fullstack.
-                                </p>
-                            </div>
-
-                            {/* Stats */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.3 }}
-                                className="flex flex-wrap gap-8 border-t border-border/50 pt-6"
+                                Semua ({projects.length})
+                            </button>
+                            <button
+                                onClick={() => setActiveFilter('erp')}
+                                className={`px-4 py-2 rounded-full border transition-all ${
+                                    activeFilter === 'erp'
+                                        ? 'bg-foreground text-background border-foreground font-medium'
+                                        : 'border-border/70 text-muted-foreground hover:text-foreground hover:border-foreground/40'
+                                }`}
                             >
-                                {[
-                                    { label: 'Total Proyek', value: projects.length },
-                                    { label: 'Unggulan', value: projects.filter((p) => p.is_featured).length },
-                                    { label: 'Teknologi', value: totalTechs },
-                                ].map((stat) => (
-                                    <div key={stat.label} className="space-y-1">
-                                        <div className="text-2xl font-bold text-foreground">
-                                            {stat.value}
-                                        </div>
-                                        <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                                            {stat.label}
-                                        </div>
-                                    </div>
-                                ))}
-                            </motion.div>
-                        </motion.div>
+                                Odoo &amp; ERP ({erpCount})
+                            </button>
+                            <button
+                                onClick={() => setActiveFilter('web')}
+                                className={`px-4 py-2 rounded-full border transition-all ${
+                                    activeFilter === 'web'
+                                        ? 'bg-foreground text-background border-foreground font-medium'
+                                        : 'border-border/70 text-muted-foreground hover:text-foreground hover:border-foreground/40'
+                                }`}
+                            >
+                                Web &amp; Mobile ({webCount})
+                            </button>
+                        </div>
                     </div>
                 </section>
 
-                {/* Stacking Cards Section */}
-                <section className="pb-24 pt-10">
-                    <div ref={containerRef} className="container mx-auto px-4">
-                        <div className="flex flex-col items-center gap-10 sm:gap-20">
-                            {projects.map((project, i) => {
-                                const step = 1 / projects.length;
-                                const targetScale = 1 - (projects.length - 1 - i) * 0.02;
-                                return (
-                                    <ProjectCard
-                                        key={project.id}
-                                        i={i}
-                                        project={project}
-                                        progress={scrollYProgress}
-                                        range={[i * step, 1]}
-                                        targetScale={targetScale}
-                                        total={projects.length}
-                                    />
-                                );
-                            })}
-                        </div>
+                {/* Projects Showcase Grid */}
+                <section className="py-16 sm:py-24">
+                    <div className="max-w-6xl mx-auto px-5 sm:px-8">
+                        <AnimatePresence mode="popLayout">
+                            <motion.div
+                                layout
+                                className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16"
+                            >
+                                {filteredProjects.map((project, idx) => {
+                                    const indexStr = (idx + 1).toString().padStart(2, '0');
+                                    const stackString = project.technologies?.map((t) => t.name).join(' · ');
 
-                        {projects.length === 0 && (
-                            <div className="py-32 text-center">
-                                <Layers className="mx-auto h-16 w-16 text-foreground/10" />
-                                <p className="mt-4 text-muted-foreground">
-                                    Belum ada proyek yang dipublikasikan.
+                                    return (
+                                        <motion.article
+                                            layout
+                                            key={project.id}
+                                            initial={{ opacity: 0, y: 16 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, scale: 0.98 }}
+                                            transition={{ duration: 0.4 }}
+                                            className="group flex flex-col justify-between"
+                                        >
+                                            {/* Preview Frame */}
+                                            <div>
+                                                <Link
+                                                    href={`/portfolio/${project.slug}`}
+                                                    className="block relative overflow-hidden rounded-sm bg-muted border border-border/70 group-hover:border-olive/50 dark:group-hover:border-olive-light/50 transition-colors aspect-[16/10]"
+                                                >
+                                                    {project.thumbnail ? (
+                                                        <img
+                                                            src={project.thumbnail}
+                                                            alt={project.title}
+                                                            className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                                                            loading="lazy"
+                                                        />
+                                                    ) : (
+                                                        <div className="w-full h-full flex flex-col items-center justify-center p-6 bg-secondary/20 text-center">
+                                                            <span className="font-serif text-2xl text-muted-foreground/50">
+                                                                {project.title}
+                                                            </span>
+                                                        </div>
+                                                    )}
+
+                                                    <div className="absolute top-3.5 left-3.5 px-2.5 py-1 rounded-sm bg-background/85 backdrop-blur-sm text-[11px] font-mono text-gold dark:text-gold-light border border-border/60">
+                                                        {indexStr}
+                                                    </div>
+                                                </Link>
+
+                                                {/* Text Info */}
+                                                <div className="mt-5">
+                                                    <Link href={`/portfolio/${project.slug}`}>
+                                                        <h3 className="font-serif text-2xl sm:text-3xl text-foreground group-hover:text-olive dark:group-hover:text-olive-light transition-colors leading-snug">
+                                                            {project.title}
+                                                        </h3>
+                                                    </Link>
+
+                                                    <p className="mt-2 text-sm text-muted-foreground font-light leading-relaxed line-clamp-3">
+                                                        {project.description}
+                                                    </p>
+
+                                                    {stackString && (
+                                                        <p className="mt-3 text-xs font-mono text-muted-foreground/80 tracking-wide">
+                                                            {stackString}
+                                                        </p>
+                                                    )}
+                                                </div>
+                                            </div>
+
+                                            {/* Action Links */}
+                                            <div className="mt-6 pt-4 border-t border-border/40 flex items-center justify-between text-xs font-mono uppercase tracking-wider">
+                                                <Link
+                                                    href={`/portfolio/${project.slug}`}
+                                                    className="inline-flex items-center gap-1.5 text-foreground hover:text-olive dark:hover:text-olive-light transition-colors font-medium"
+                                                >
+                                                    <span>Studi Kasus</span>
+                                                    <ArrowUpRight className="w-3.5 h-3.5" />
+                                                </Link>
+
+                                                <div className="flex items-center gap-4">
+                                                    {project.demo_url && (
+                                                        <a
+                                                            href={project.demo_url}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1"
+                                                        >
+                                                            <span>Demo</span>
+                                                            <ExternalLink className="w-3 h-3" />
+                                                        </a>
+                                                    )}
+                                                    {project.github_url && (
+                                                        <a
+                                                            href={project.github_url}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1"
+                                                        >
+                                                            <span>Repo</span>
+                                                            <Github className="w-3 h-3" />
+                                                        </a>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </motion.article>
+                                    );
+                                })}
+                            </motion.div>
+                        </AnimatePresence>
+
+                        {filteredProjects.length === 0 && (
+                            <div className="py-24 text-center">
+                                <p className="font-serif text-2xl text-muted-foreground">
+                                    Tidak ada proyek yang cocok dengan filter ini.
                                 </p>
                             </div>
                         )}

@@ -65,9 +65,9 @@ class PortfolioSeeder extends Seeder
                 ['user_id' => $user->id],
                 [
                     'full_name' => 'ASMIN',
-                    'title' => 'Developer Odoo · Konsultan Teknis ERP · Developer Web Fullstack',
-                    'tagline' => 'Developer Odoo dan Fullstack Engineer dengan hampir 2 tahun pengalaman ERP dan 3+ tahun pengembangan web.',
-                    'bio' => 'Developer Odoo dan Fullstack Engineer dengan pengalaman langsung selama hampir 2 tahun dalam implementasi ERP serta lebih dari 3 tahun dalam pengembangan web fullstack. Spesialisasi dalam pengembangan modul Odoo end-to-end untuk alur kerja POS, Penjualan (Sales), Akuntansi (Accounting), Inventaris (Inventory), dan Biaya (Expense) — sekaligus mengelola 4 hingga 6 implementasi klien aktif di industri ritel, maritim, dan distribusi. Terbukti mampu mengintegrasikan Odoo dengan sistem eksternal melalui REST API, menggantikan proses operasional manual dengan alur kerja digital yang dapat diaudit. Mampu secara mandiri menghasilkan solusi web dan mobile yang lengkap menggunakan Laravel, React, Flutter, dan Python, sehingga mengeliminasi ketergantungan pada sumber daya pengembangan tambahan.',
+                    'title' => 'Developer Odoo · Web Fullstack',
+                    'tagline' => 'Developer Odoo & fullstack. Bikin sistem yang langsung kepake.',
+                    'bio' => 'Saya Asmin, developer Odoo di Technoindo, Kendari. Sehari-hari custom modul Odoo — POS, Sales, Inventory, Accounting — buat klien ritel, maritim, dan distribusi. Di luar itu saya bikin web pakai Laravel + React dan mobile pakai Flutter. Satu proyek saya pegang sendiri, dari database sampai jadi.',
                     'location' => 'Kendari, Sulawesi Tenggara, Indonesia',
                     'phone' => '+62 812-4287-3775',
                     'email' => $user->email,
@@ -113,12 +113,10 @@ class PortfolioSeeder extends Seeder
                 'end_date' => null,
                 'is_current' => true,
                 'company_url' => 'https://technoindo.com',
-                'description' => "Kustomisasi ERP Odoo siklus penuh dan implementasi klien di berbagai industri, berperan sebagai developer tunggal dan kontak teknis utama untuk setiap akun klien.\n\n" .
-                    "• Mengelola implementasi ERP secara simultan untuk 4 hingga 6 klien aktif di sektor ritel, maritim, dan distribusi — menangani pengumpulan kebutuhan, kustomisasi modul, deployment, dan dukungan pasca-rilis secara mandiri tanpa eskalasi.\n" .
-                    "• Melakukan kustomisasi modul Odoo 17 termasuk POS, Penjualan, Pembelian, Manufaktur, Akuntansi, Pengeluaran, dan Faktur untuk 3 klien ritel, mendukung volume transaksi POS harian sebesar Rp 10–20 juta per perusahaan.\n" .
-                    "• Mengembangkan 15+ Laporan operasional kustom (ringkasan penjualan, pelacakan konsinyasi, umur piutang) menggunakan mesin pelaporan QWeb, disesuaikan dengan kebutuhan bisnis masing-masing klien.\n" .
-                    "• Menyesuaikan alur kerja modul Faktur dan Pengeluaran untuk klien sektor maritim Safinah, termasuk perutean persetujuan kustom dan format laporan keuangan yang selaras dengan standar operasional industri pelayaran.\n" .
-                    "• Membangun integrasi REST API antara Odoo dan sistem stock opname berbasis Laravel — menggantikan ekspor database manual dan proses rekonsiliasi Excel dengan rekam jejak audit digital yang dilengkapi riwayat verifikasi per pengguna.",
+                'description' => "Developer Odoo di Technoindo. Pegang klien langsung — dari kebutuhan, custom modul, sampai live.\n\n" .
+                    "• Pegang 4–6 klien bareng di ritel, maritim, dan distribusi.\n" .
+                    "• Custom modul Odoo 17: POS, Sales, Purchase, Inventory, Accounting. Bikin 15+ laporan QWeb sesuai maunya klien.\n" .
+                    "• Integrasi Odoo + Laravel via REST API buat stock opname — gantiin rekap Excel manual.",
                 'order' => 1,
             ]);
 
@@ -132,9 +130,9 @@ class PortfolioSeeder extends Seeder
                 'end_date' => '2026-01-31',
                 'is_current' => false,
                 'company_url' => 'https://technoindo.com',
-                'description' => "Dikontrak untuk proyek terfokus guna menghasilkan sistem manajemen operasional lengkap untuk bisnis kapal maritim.\n\n" .
-                    "• Menyelesaikan Sistem Manajemen Kapap Phinisi full-stack (Laravel 12, React, Inertia.js) mulai dari desain database hingga deployment produksi dalam siklus pengembangan mandiri selama 30 hari.\n" .
-                    "• Mendesain skema database relasional dan lapisan REST API yang mendukung alur kerja operasional kapal, dengan UI responsif yang dibuat untuk digunakan secara langsung oleh staf operasional non-teknis.",
+                'description' => "Proyek kontrak — bikin sistem operasional kapal Phinisi sampai live.\n\n" .
+                    "• Fullstack Laravel 12 + React, dari database sampai deploy, dikerjain sendiri 30 hari.\n" .
+                    "• UI dibikin simpel biar staf operasional langsung bisa pakai.",
                 'order' => 2,
             ]);
 
@@ -147,8 +145,8 @@ class PortfolioSeeder extends Seeder
                 'start_date' => '2026-01-01',
                 'end_date' => '2026-02-28',
                 'is_current' => false,
-                'description' => "Mendesain dan mengembangkan sistem POS dan inventaris berbasis web kustom untuk klien ritel bahan bangunan.\n\n" .
-                    "• Membangun sistem manajemen POS dan inventaris Laravel 12 yang mendukung ratusan SKU aktif, transaksi penjualan harian, dan pelacakan stok real-time untuk peritel bahan bangunan.",
+                'description' => "Bikin sistem POS + inventaris buat toko bahan bangunan.\n\n" .
+                    "• Laravel 12, ratusan SKU, stok real-time, transaksi harian jalan.",
                 'order' => 3,
             ]);
 
@@ -189,8 +187,8 @@ class PortfolioSeeder extends Seeder
                 [
                     'title' => 'Raja Ikan — Sistem Manajemen Distribusi Ikan',
                     'slug' => 'raja-ikan-sistem-manajemen-distribusi-ikan-' . $user->id,
-                    'description' => 'Platform distribusi ikan end-to-end yang mengintegrasikan aplikasi driver mobile Flutter dengan rute genetika, backend REST API Flask, dan dashboard admin Laravel React.',
-                    'content' => "### Masalah Bisnis\n\nPerencanaan rute pengiriman manual menyebabkan jarak tempuh tidak efisien dan keterlambatan pengiriman ikan di berbagai rute distribusi.\n\n### Solusi\n\nMembangun platform distribusi end-to-end — aplikasi mobile Flutter untuk pengemudi dengan optimasi rute berbasis Algoritma Genetika (backend Flask), serta dashboard admin (Laravel + React) untuk manajemen pesanan, pelacakan armada, dan pelaporan operasional.\n\n### Hasil\n\nSelesai lebih cepat dari tenggat waktu awal; semua komponen diintegrasikan melalui REST API tanpa ketergantungan pada layanan pihak ketiga.",
+                    'description' => 'Aplikasi distribusi ikan — driver pakai Flutter, rute dioptimasi algoritma genetika, admin pakai Laravel + React.',
+                    'content' => "### Masalah\n\nRute kirim disusun manual, jadinya muter-muter dan sering telat.\n\n### Yang saya bikin\n\nAplikasi driver Flutter + optimasi rute (Flask), dashboard admin Laravel + React buat pesanan dan pantau armada. Semua nyambung via REST API.",
                     'technologies' => ['Laravel', 'React', 'Flask', 'Python', 'PostgreSQL', 'Flutter'],
                     'image' => 'https://placehold.co/600x400/png?text=Raja+Ikan+Distribusi',
                     'project_url' => 'https://zettdev.my.id',
@@ -199,8 +197,8 @@ class PortfolioSeeder extends Seeder
                 [
                     'title' => 'Sistem Pelacakan Kontainer Pelabuhan',
                     'slug' => 'sistem-pelacakan-kontainer-pelabuhan-' . $user->id,
-                    'description' => 'Sistem pelacakan kontainer pelabuhan real-time menggunakan algoritma manajemen antrean FIFO dan dashboard interaktif React.',
-                    'content' => "### Masalah Bisnis\n\nOperator pelabuhan mengandalkan pelacakan manual tanpa visibilitas ke dalam status antrean kontainer real-time di seluruh operasi bongkar muat.\n\n### Solusi\n\nMengembangkan sistem pelacakan kontainer real-time menggunakan algoritma manajemen antrean FIFO, dengan dashboard pemantauan React yang merefleksikan perubahan status kontainer secara langsung tanpa muat ulang halaman.\n\n### Hasil\n\nSelesai lebih cepat dari tenggat waktu; memungkinkan operator memantau semua kontainer aktif secara real-time tanpa rekonsiliasi manual.",
+                    'description' => 'Pelacakan kontainer pelabuhan real-time, antrean FIFO, dashboard React.',
+                    'content' => "### Masalah\n\nKontainer dicatat manual, posisi antrean nggak kelihatan.\n\n### Yang saya bikin\n\nSistem tracking real-time pakai antrean FIFO + dashboard React. Status berubah langsung kelihatan, nggak perlu refresh.",
                     'technologies' => ['Laravel', 'React', 'Inertia.js', 'PostgreSQL'],
                     'image' => 'https://placehold.co/600x400/png?text=Pelacakan+Kontainer',
                     'project_url' => 'https://zettdev.my.id',
@@ -209,8 +207,8 @@ class PortfolioSeeder extends Seeder
                 [
                     'title' => 'Sistem Rekomendasi Kuliner',
                     'slug' => 'sistem-rekomendasi-kuliner-' . $user->id,
-                    'description' => 'Aplikasi rekomendasi makanan berbasis machine learning dengan algoritma Singular Value Decomposition (SVD), Flask REST API, dan antarmuka React.',
-                    'content' => "Membangun mesin rekomendasi berbasis machine learning menggunakan Singular Value Decomposition (SVD) untuk personalisasi preferensi makanan pengguna, dengan backend REST API Flask and frontend React.\n\nSelesai lebih cepat dari tenggat waktu akademis, mendemonstrasikan integrasi model ML terapan dalam arsitektur aplikasi web bergaya produksi.",
+                    'description' => 'Rekomendasi makanan pakai SVD, backend Flask, frontend React.',
+                    'content' => "Rekomendasi makanan pakai SVD buat personalisasi. Backend Flask, frontend React.",
                     'technologies' => ['Python', 'Flask', 'React'],
                     'image' => 'https://placehold.co/600x400/png?text=Rekomendasi+Kuliner',
                     'project_url' => 'https://zettdev.my.id',
@@ -219,8 +217,8 @@ class PortfolioSeeder extends Seeder
                 [
                     'title' => 'Sistem Manajemen Kapal Phinisi',
                     'slug' => 'sistem-manajemen-kapal-phinisi-' . $user->id,
-                    'description' => 'Sistem manajemen operasional lengkap untuk kapal Phinisi komersial dengan arsitektur Laravel 12, Inertia React, dan REST API internal.',
-                    'content' => "Menyelesaikan Sistem Manajemen Kapal Phinisi full-stack (Laravel 12, React, Inertia.js) mulai dari desain database hingga deployment produksi dalam siklus pengembangan mandiri selama 30 hari.\n\nMendesain skema database relasional dan lapisan REST API yang mendukung alur kerja operasional kapal, dengan UI responsif yang dibuat untuk digunakan secara langsung oleh staf operasional non-teknis.",
+                    'description' => 'Sistem operasional kapal Phinisi — Laravel 12 + React, dari database sampai live 30 hari.',
+                    'content' => "Sistem operasional kapal Phinisi fullstack. Dikerjain sendiri dari nol sampai deploy 30 hari. UI dibikin gampang biar staf non-teknis langsung pakai.",
                     'technologies' => ['Laravel', 'React', 'Inertia.js'],
                     'image' => 'https://placehold.co/600x400/png?text=Manajemen+Kapal+Phinisi',
                     'project_url' => 'https://zettdev.my.id',
@@ -229,7 +227,7 @@ class PortfolioSeeder extends Seeder
                 [
                     'title' => 'Sistem Manajemen POS Bahan Bangunan',
                     'slug' => 'sistem-manajemen-pos-bahan-bangunan-' . $user->id,
-                    'description' => 'Sistem Point of Sales (POS) dan manajemen inventaris stok real-time kustom yang dikembangkan menggunakan Laravel 12.',
+                    'description' => 'POS + inventaris toko bahan bangunan, Laravel 12, stok real-time.',
                     'content' => "Membangun sistem manajemen POS dan inventaris Laravel 12 yang mendukung ratusan SKU aktif, transaksi penjualan harian, dan pelacakan stok real-time untuk peritel bahan bangunan.",
                     'technologies' => ['Laravel', 'MySQL'],
                     'image' => 'https://placehold.co/600x400/png?text=POS+Bahan+Bangunan',
@@ -239,7 +237,7 @@ class PortfolioSeeder extends Seeder
                 [
                     'title' => 'Phinisi Ticket Booking',
                     'slug' => 'phinisi-ticket-booking-' . $user->id,
-                    'description' => 'Sistem pemesanan tiket komprehensif untuk kapal Phinisi. Fitur alur pemesanan terstruktur, penggunaan Shadcn UI yang ekstensif untuk nuansa premium, dan integrasi gateway pembayaran Xendit.',
+                    'description' => 'Booking tiket kapal Phinisi — alur pesan simpel, UI Shadcn, bayar via Xendit.',
                     'content' => 'Dibangun dengan Laravel, React, TypeScript, dan Inertia.js.',
                     'technologies' => ['Laravel', 'React', 'Typescript', 'Shadcn UI', 'Inertia.js'],
                     'image' => 'https://placehold.co/600x400/png?text=Phinisi+Booking',

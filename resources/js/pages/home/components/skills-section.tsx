@@ -44,7 +44,7 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
                             </h2>
                         </div>
                         <p className="max-w-md text-muted-foreground">
-                            I specialize in building robust solutions using these modern technologies and tools.
+                            Ini tools yang saya pakai tiap hari.
                         </p>
                     </motion.div>
 

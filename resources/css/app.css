@@ -1,5 +1,5 @@
 /* Import Outstanding Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap');
 
 @import 'tailwindcss';
 @import 'tw-animate-css';
@@ -10,8 +10,9 @@
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
 @theme {
-    --font-heading: 'Syne', sans-serif;
-    --font-sans: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    --font-serif: 'Instrument Serif', 'Cormorant Garamond', Georgia, serif;
+    --font-heading: 'Instrument Serif', 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
 
     --animate-gradient: gradient 8s linear infinite;
     --animate-blob: blob 7s infinite;
@@ -93,85 +94,104 @@
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
+
+    /* Luxury Olive & Gold Tokens */
+    --color-olive: var(--olive);
+    --color-olive-light: var(--olive-light);
+    --color-olive-dark: var(--olive-dark);
+    --color-gold: var(--gold);
+    --color-gold-light: var(--gold-light);
 }
 
 :root {
-    /* Base Shadcn Variables */
-    --radius: 0.625rem;
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
+    /* Base Shadcn Variables - Ultra-clean Alabaster White with Olive & Gold */
+    --radius: 0.5rem;
+    --background: #FAF9F5;
+    --foreground: #181916;
+    --card: #FFFFFF;
+    --card-foreground: #181916;
+    --popover: #FFFFFF;
+    --popover-foreground: #181916;
+    --primary: #384633;
+    --primary-foreground: #FAF9F5;
+    --secondary: #F2F0E8;
+    --secondary-foreground: #181916;
+    --muted: #F3F1EA;
+    --muted-foreground: #717368;
+    --accent: #F0EDE4;
+    --accent-foreground: #181916;
     --destructive: oklch(0.577 0.245 27.325);
-    --destructive-foreground: oklch(0.985 0 0);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.646 0.222 41.116);
-    --chart-2: oklch(0.6 0.118 184.704);
-    --chart-3: oklch(0.398 0.07 227.392);
-    --chart-4: oklch(0.828 0.189 84.429);
-    --chart-5: oklch(0.769 0.188 70.08);
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
+    --destructive-foreground: #FFFFFF;
+    --border: rgba(24, 25, 22, 0.09);
+    --input: rgba(24, 25, 22, 0.14);
+    --ring: #384633;
+
+    /* Luxury Accents */
+    --olive: #41533B;
+    --olive-light: #5A7052;
+    --olive-dark: #2A3626;
+    --gold: #A68553;
+    --gold-light: #C2A170;
+
+    --chart-1: #41533B;
+    --chart-2: #A68553;
+    --chart-3: #5A7052;
+    --chart-4: #8C7043;
+    --chart-5: #2A3626;
+    --sidebar: #FAF9F5;
+    --sidebar-foreground: #181916;
+    --sidebar-primary: #384633;
+    --sidebar-primary-foreground: #FAF9F5;
+    --sidebar-accent: #F0EDE4;
+    --sidebar-accent-foreground: #181916;
+    --sidebar-border: rgba(24, 25, 22, 0.09);
+    --sidebar-ring: #384633;
 }
 
 .dark {
-    /* Shadcn Dark Mode Variables */
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
+    /* Shadcn Dark Mode Variables - Deep Obsidian Charcoal with Muted Gold & Olive */
+    --background: #0D0F0C;
+    --foreground: #F5F5F0;
+    --card: #131612;
+    --card-foreground: #F5F5F0;
+    --popover: #131612;
+    --popover-foreground: #F5F5F0;
 
-    /* Neon Primary for Outstanding Look in Dark Mode */
-    --primary: oklch(0.85 0.25 140);
-    --primary-foreground: oklch(0.1 0.05 140);
+    --primary: #8EA985;
+    --primary-foreground: #0D0F0C;
 
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
+    --secondary: #191D17;
+    --secondary-foreground: #F5F5F0;
+    --muted: #181B16;
+    --muted-foreground: #8C9184;
+    --accent: #1C211A;
+    --accent-foreground: #F5F5F0;
     --destructive: oklch(0.704 0.191 22.216);
-    --destructive-foreground: oklch(0.985 0 0);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.488 0.243 264.376);
-    --chart-2: oklch(0.696 0.17 162.48);
-    --chart-3: oklch(0.769 0.188 70.08);
-    --chart-4: oklch(0.627 0.265 303.9);
-    --chart-5: oklch(0.645 0.246 16.439);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
+    --destructive-foreground: #F5F5F0;
+    --border: rgba(245, 245, 240, 0.09);
+    --input: rgba(245, 245, 240, 0.14);
+    --ring: #8EA985;
 
-    /* Outstanding Deep Background for Dark Mode */
-    --background: oklch(0.1 0.02 260);
+    /* Luxury Accents Dark */
+    --olive: #8EA985;
+    --olive-light: #A5C09B;
+    --olive-dark: #637B5C;
+    --gold: #D8BD96;
+    --gold-light: #E8D3B3;
+
+    --chart-1: #8EA985;
+    --chart-2: #D8BD96;
+    --chart-3: #A5C09B;
+    --chart-4: #BCA075;
+    --chart-5: #637B5C;
+    --sidebar: #10130F;
+    --sidebar-foreground: #F5F5F0;
+    --sidebar-primary: #8EA985;
+    --sidebar-primary-foreground: #0D0F0C;
+    --sidebar-accent: #1C211A;
+    --sidebar-accent-foreground: #F5F5F0;
+    --sidebar-border: rgba(245, 245, 240, 0.09);
+    --sidebar-ring: #8EA985;
 }
 
 /* GLOBAL NOISE UTILITY */

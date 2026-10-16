@@ -62,7 +62,7 @@ export function AboutSection({ profile }: AboutSectionProps) {
                             variants={fadeInUp}
                             className="mb-8 font-heading text-4xl leading-tight font-bold text-foreground md:text-5xl lg:text-6xl"
                         >
-                            {profile.tagline || 'Crafting digital experiences with passion & precision.'}
+                            {profile.tagline || 'Bikin sistem yang kepake, bukan yang cuma bagus di demo.'}
                         </motion.h2>
 
                         <motion.div variants={fadeInUp} className="space-y-6 text-lg leading-relaxed text-muted-foreground">
