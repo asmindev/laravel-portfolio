@@ -185,7 +185,7 @@ class PortfolioSeeder extends Seeder
             Project::where('user_id', $user->id)->delete();
             $projects = [
                 [
-                    'title' => 'Raja Ikan — Sistem Manajemen Distribusi Ikan',
+                    'title' => 'Raja Ikan — Distribusi Ikan',
                     'slug' => 'raja-ikan-sistem-manajemen-distribusi-ikan-' . $user->id,
                     'description' => 'Aplikasi distribusi ikan — driver pakai Flutter, rute dioptimasi algoritma genetika, admin pakai Laravel + React.',
                     'content' => "### Masalah\n\nRute kirim disusun manual, jadinya muter-muter dan sering telat.\n\n### Yang saya bikin\n\nAplikasi driver Flutter + optimasi rute (Flask), dashboard admin Laravel + React buat pesanan dan pantau armada. Semua nyambung via REST API.",
@@ -195,7 +195,7 @@ class PortfolioSeeder extends Seeder
                     'github_url' => 'https://github.com/asmindev/raja-ikan',
                 ],
                 [
-                    'title' => 'Sistem Pelacakan Kontainer Pelabuhan',
+                    'title' => 'Tracking Kontainer Pelabuhan',
                     'slug' => 'sistem-pelacakan-kontainer-pelabuhan-' . $user->id,
                     'description' => 'Pelacakan kontainer pelabuhan real-time, antrean FIFO, dashboard React.',
                     'content' => "### Masalah\n\nKontainer dicatat manual, posisi antrean nggak kelihatan.\n\n### Yang saya bikin\n\nSistem tracking real-time pakai antrean FIFO + dashboard React. Status berubah langsung kelihatan, nggak perlu refresh.",
@@ -205,7 +205,7 @@ class PortfolioSeeder extends Seeder
                     'github_url' => 'https://github.com/asmindev/port-container-tracker',
                 ],
                 [
-                    'title' => 'Sistem Rekomendasi Kuliner',
+                    'title' => 'Rekomendasi Kuliner',
                     'slug' => 'sistem-rekomendasi-kuliner-' . $user->id,
                     'description' => 'Rekomendasi makanan pakai SVD, backend Flask, frontend React.',
                     'content' => "Rekomendasi makanan pakai SVD buat personalisasi. Backend Flask, frontend React.",
@@ -215,7 +215,7 @@ class PortfolioSeeder extends Seeder
                     'github_url' => 'https://github.com/asmindev/culinary-recommender',
                 ],
                 [
-                    'title' => 'Sistem Manajemen Kapal Phinisi',
+                    'title' => 'Manajemen Kapal Phinisi',
                     'slug' => 'sistem-manajemen-kapal-phinisi-' . $user->id,
                     'description' => 'Sistem operasional kapal Phinisi — Laravel 12 + React, dari database sampai live 30 hari.',
                     'content' => "Sistem operasional kapal Phinisi fullstack. Dikerjain sendiri dari nol sampai deploy 30 hari. UI dibikin gampang biar staf non-teknis langsung pakai.",
@@ -225,7 +225,7 @@ class PortfolioSeeder extends Seeder
                     'github_url' => 'https://github.com/asmindev/phinisi-management',
                 ],
                 [
-                    'title' => 'Sistem Manajemen POS Bahan Bangunan',
+                    'title' => 'POS Toko Bahan Bangunan',
                     'slug' => 'sistem-manajemen-pos-bahan-bangunan-' . $user->id,
                     'description' => 'POS + inventaris toko bahan bangunan, Laravel 12, stok real-time.',
                     'content' => "Membangun sistem manajemen POS dan inventaris Laravel 12 yang mendukung ratusan SKU aktif, transaksi penjualan harian, dan pelacakan stok real-time untuk peritel bahan bangunan.",
@@ -235,7 +235,7 @@ class PortfolioSeeder extends Seeder
                     'github_url' => 'https://github.com/asmindev/pos-tb',
                 ],
                 [
-                    'title' => 'Phinisi Ticket Booking',
+                    'title' => 'Booking Tiket Phinisi',
                     'slug' => 'phinisi-ticket-booking-' . $user->id,
                     'description' => 'Booking tiket kapal Phinisi — alur pesan simpel, UI Shadcn, bayar via Xendit.',
                     'content' => 'Dibangun dengan Laravel, React, TypeScript, dan Inertia.js.',
@@ -245,7 +245,7 @@ class PortfolioSeeder extends Seeder
                     'github_url' => 'https://github.com/asmindev/phinisi-ticket-booking',
                 ],
                 [
-                    'title' => 'Enterprise ERP & Shipping (Safinah)',
+                    'title' => 'ERP Pelayaran Safinah',
                     'slug' => 'safinah-enterprise-erp-' . $user->id,
                     'description' => 'Arsitektur ERP maritim Odoo. Optimalisasi performa laporan menggunakan Raw SQL dan keamanan data multi-cabang.',
                     'detailed_description' => 'Mengarsiteki sistem Odoo untuk manajemen pelayaran (Ship & Cargo). Membangun puluhan custom module operasional dan mengoptimalkan komputasi laporan mutasi kapal.',
@@ -257,7 +257,7 @@ class PortfolioSeeder extends Seeder
                     'github_url' => '',
                 ],
                 [
-                    'title' => 'Multi-Company ERP (Fadhil Indokreatif)',
+                    'title' => 'ERP Fadhil Indokreatif',
                     'slug' => 'fadhil-indokreatif-erp-' . $user->id,
                     'description' => 'Ekosistem Odoo multi-company untuk Manufaktur Percetakan & Konstruksi. Otomatisasi BoM dan laporan akuntansi eksekusi SQL.',
                     'detailed_description' => 'Menyatukan unit bisnis percetakan dan konstruksi dalam satu instance Odoo. Membuat kalkulasi BoM dimensi area dinamis dan optimasi reporting keuangan skala besar.',
@@ -269,7 +269,7 @@ class PortfolioSeeder extends Seeder
                     'github_url' => '',
                 ],
                 [
-                    'title' => 'Giant Distribution & Retail ERP (Karya Jaya)',
+                    'title' => 'ERP Distribusi Karya Jaya',
                     'slug' => 'karya-jaya-retail-pos-' . $user->id,
                     'description' => 'Transformasi Odoo mencakup 2.500+ file custom. Mengotomatisasi ekosistem Finance, Logistik armada, Engine Komisi, dan Redis POS.',
                     'detailed_description' => 'Mendesain ulang behavior bawaan Odoo di seluruh departemen krusial. Sistem kasir tidak lagi crash berkat arsitektur Redis, logistik terpetakan secara otomatis, dan pelaporan E-Faktur berjalan tanpa campur tangan manual.',
@@ -281,7 +281,7 @@ class PortfolioSeeder extends Seeder
                     'github_url' => '',
                 ],
                 [
-                    'title' => 'Logistics ERP (Nawacena Primaraya)',
+                    'title' => 'ERP Logistik Nawacena',
                     'slug' => 'nawacena-primaraya-erp-logistik-' . $user->id,
                     'description' => 'Sistem Odoo kustom untuk logistik bahan bakar. Manajemen utilitas armada, upah otomatis supir, dan tracking rute pengiriman.',
                     'detailed_description' => 'Sistem spesialis logistik kargo cair. Manajemen kapasitas armada tanker, hitung upah jalan berdasar rute, dan komputasi komisi logistik.',
@@ -293,7 +293,7 @@ class PortfolioSeeder extends Seeder
                     'github_url' => '',
                 ],
                 [
-                    'title' => 'Wholesale & Retail B2B Ecosystem (Tulusdev)',
+                    'title' => 'ERP Grosir Tulusdev',
                     'slug' => 'tulusdev-wholesale-erp-' . $user->id,
                     'description' => 'Restrukturisasi aliran data Grosir (B2B) menggunakan WebSockets untuk stok mutlak, validasi Procurement, dan HRMS Loan.',
                     'detailed_description' => 'Mengeksekusi ekosistem retail cepat dan distribusi grosir dalam satu core. Memecahkan lag data stok dengan WebSockets, validasi Purchase Request berjenjang, dan bypass hardware printer Dotmatrix.',
@@ -305,7 +305,7 @@ class PortfolioSeeder extends Seeder
                     'github_url' => '',
                 ],
                 [
-                    'title' => 'Hybrid Retail & Production Automation (Glory Dev)',
+                    'title' => 'ERP Ritel Glory Dev',
                     'slug' => 'glory-dev-advanced-erp-' . $user->id,
                     'description' => 'Inovasi *Point of Sale* yang mampu mengontrol arus Produksi (MRP) di dapur, rekap hutang terpusat, dan *Auto-cleanup Database*.',
                     'detailed_description' => 'Membalik paradigma sistem kasir biasa. Di Glory Dev, POS digunakan sebagai antarmuka komando multi-fungsi yang memerintahkan pabrikasi perakitan, mencatat pengeluaran akuntansi instan, dan membagi sesi pesanan antar terminal.',
@@ -317,7 +317,7 @@ class PortfolioSeeder extends Seeder
                     'github_url' => '',
                 ],
                 [
-                    'title' => 'Notary Management App',
+                    'title' => 'Aplikasi Notaris',
                     'slug' => 'notary-management-app-' . $user->id,
                     'description' => 'Sistem manajemen untuk kantor Notaris untuk melacak akta, klien, dan jadwal.',
                     'content' => 'Aplikasi Fullstack Laravel + Inertia React.',
@@ -327,7 +327,7 @@ class PortfolioSeeder extends Seeder
                     'github_url' => 'https://github.com/asmindev/notary-management-app',
                 ],
                 [
-                    'title' => 'Sikedar (Skripsi)',
+                    'title' => 'Sikedar — Skripsi',
                     'slug' => 'sikedar-thesis-' . $user->id,
                     'description' => 'Proyek skripsi untuk mengukur kesadaran karyawan terhadap kebocoran data menggunakan metode KNN (K-Nearest Neighbors).',
                     'content' => 'Implementasi penelitian akademik menggunakan Laravel (Backend) dan React Inertia (Frontend).',
